@@ -126,19 +126,17 @@ export default function Home() {
           setOpenItems({ [newestId]: true });
         }
 
-        // Calculate Stats (Mocking total reached for now, you might track this separately)
+        // Calculate Stats
         const wonOffers = formattedActivities.filter(a => a.status.toLowerCase() === 'won');
         const revenue = offersData.reduce((sum: number, current: any) => sum + (Number(current.deal_value) || 0), 0);
         
-        // For the experiment, "reached" should probably be a total count of all offers (including private)
-        // Let's do a quick count of all offers for the 'reached' stat
-        const { count: totalOffers } = await supabase
-          .from("offers")
-          .select("*", { count: "exact", head: true });
+        // A response is any offer that has moved past the initial 'contacted' stage
+        const respondedOffers = offersData.filter((o: any) => o.stage && o.stage.toLowerCase() !== 'contacted');
+        const totalOffers = offersData.length;
 
         setStats({
           reached: totalOffers || 0,
-          responseRate: totalOffers && totalOffers > 0 ? Number(((formattedActivities.length / totalOffers) * 100).toFixed(1)) : 0, // simplified calc
+          responseRate: totalOffers > 0 ? Number(((respondedOffers.length / totalOffers) * 100).toFixed(1)) : 0,
           dealsWon: wonOffers.length,
           revenue: revenue
         });

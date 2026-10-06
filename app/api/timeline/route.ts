@@ -12,6 +12,7 @@ export async function GET() {
         activity_date,
         created_at,
         offer_title,
+        stage,
         status,
         company_name,
         person_name,
