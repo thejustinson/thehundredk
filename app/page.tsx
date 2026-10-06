@@ -26,8 +26,7 @@ function AnimatedNumber({ value }: { value: number }) {
   const [displayValue, setDisplayValue] = useState(0);
 
   useEffect(() => {
-    if (value === 0) return;
-    
+    let animationFrameId: number;
     const duration = 1500; // 1.5s
     const startTime = performance.now();
 
@@ -41,13 +40,17 @@ function AnimatedNumber({ value }: { value: number }) {
       setDisplayValue(Math.floor(easeProgress * value));
       
       if (progress < 1) {
-        requestAnimationFrame(animate);
+        animationFrameId = requestAnimationFrame(animate);
       } else {
         setDisplayValue(value);
       }
     };
     
-    requestAnimationFrame(animate);
+    animationFrameId = requestAnimationFrame(animate);
+    
+    return () => {
+      if (animationFrameId) cancelAnimationFrame(animationFrameId);
+    };
   }, [value]);
 
   return <>{displayValue.toLocaleString()}</>;
