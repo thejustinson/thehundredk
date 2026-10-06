@@ -128,7 +128,7 @@ export default function Home() {
 
         // Calculate Stats (Mocking total reached for now, you might track this separately)
         const wonOffers = formattedActivities.filter(a => a.status.toLowerCase() === 'won');
-        const revenue = offersData.reduce((sum, current) => sum + (Number(current.deal_value) || 0), 0);
+        const revenue = offersData.reduce((sum: number, current: any) => sum + (Number(current.deal_value) || 0), 0);
         
         // For the experiment, "reached" should probably be a total count of all offers (including private)
         // Let's do a quick count of all offers for the 'reached' stat
