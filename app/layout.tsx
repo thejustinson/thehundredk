@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "The Hundred K",
-  description: "A public sales journey to reach 100,000 people.",
+  title: "THEHUNDREDK | Your next level starts online",
+  description: "Websites, digital experiences, and automations built for your next move.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
