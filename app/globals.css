@@ -25,6 +25,10 @@
   color: var(--color-ink);
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-sans);
   background: var(--color-canvas);
@@ -2844,6 +2848,21 @@ body {
     gap: 12px;
     padding-right: 20px;
     padding-left: 20px;
+  }
+
+  .landing-page-card .desktop-nav,
+  .landing-page-card .header-cta {
+    display: none;
+  }
+
+  .landing-page-card .mobile-menu-trigger {
+    display: inline-flex;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
