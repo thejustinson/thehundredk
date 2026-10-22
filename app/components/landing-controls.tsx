@@ -112,9 +112,9 @@ export function MobileMenu({ links }: { links: readonly NavLink[] }) {
                 </Link>
               ))}
             </nav>
-            <a href="https://x.com/thejustinson" className="button button-dark mobile-menu-cta" target="_blank" rel="noopener noreferrer" onClick={closeMenu}>
+            <Link href="/start" className="button button-dark mobile-menu-cta" onClick={closeMenu}>
               Get Started <ArrowUpRight size={16} strokeWidth={1.5} aria-hidden="true" />
-            </a>
+            </Link>
         </div>
       </div>
     </>
